@@ -1,0 +1,901 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/13/2017 11:00:16 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EJC8HHJ"
+  DTS:CreatorName="DESKTOP-EJC8HHJ\ecana"
+  DTS:DTSID="{AB45470B-9C11-4BD9-8E7D-6E4C6635818F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="10250"
+  DTS:ObjectName="Pack_ETL_DimPostulante"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{BE7EC337-2A0F-411C-9409-3A496B98BDF1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8D5035EE-E02B-43CD-8D57-775E703BC0FE}"
+      DTS:ObjectName="DESKTOP-EJC8HHJ.Admision_UNSA_DW">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::Server_Name]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-EJC8HHJ;Initial Catalog=Admision_UNSA_DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8EC04FF7-2642-4783-B905-528C35DF4C80}"
+      DTS:ObjectName="DESKTOP-EJC8HHJ.Admision_UNSA_Stage">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::Server_Name]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-EJC8HHJ;Initial Catalog=Admision_UNSA_Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar DimPostulante"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{15451C8C-CC63-495F-9FD1-1FE6521B4D4E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar DimPostulante"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar DimPostulante\Columna ApellidosNombres"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columna ApellidosNombres"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada].Columns[ApellidosNombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ApellidosNombres"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]} + ", " + #{Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Apellidos + ", " + Nombres</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada].Columns[Apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Apellidos"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]" />
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada].Columns[Nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombres"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columna Nombres-Apellidos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Inputs[Entrada de columna derivada].Columns[ApellidosNombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ApellidosNombres"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]"
+                      name="Apellidos"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[REPLACE]([LEFT](#{Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]},[FINDSTRING](#{Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]},",",1) - 1),"/"," ")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(LEFT(ApellidosNombres,FINDSTRING(ApellidosNombres,",",1) - 1),"/"," ")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]"
+                      name="Nombres"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[RIGHT](#{Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]},[FINDSTRING]([REVERSE](#{Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]}),",",1) - 2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT(ApellidosNombres,FINDSTRING(REVERSE(ApellidosNombres),",",1) - 2)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino DB Admision_UNSA_DW Tabla DimPostulante"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[DimPostulante]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_DW]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].Columns[Apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Apellidos"
+                      externalMetadataColumnId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[Apellidos]"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]" />
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].Columns[Nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombres"
+                      externalMetadataColumnId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombres]"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]" />
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].Columns[ApellidosNombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ApellidosNombres"
+                      externalMetadataColumnId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[ApellidosNombres]"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[KeyDimPostulante]"
+                      dataType="i4"
+                      name="KeyDimPostulante" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[Apellidos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Apellidos" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombres" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB].ExternalColumns[ApellidosNombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ApellidosNombres" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DimPostulante\Filtrado duplicados"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Filtrado duplicados"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimPostulante]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimPostulante]) [refTable]
+where [refTable].[Apellidos] = ? and [refTable].[Nombres] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="KeyDimPostulante" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Apellidos" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Nombres" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]};#{Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DimPostulante\Filtrado duplicados.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_DW]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[Nombres]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombres"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Nombres]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Nombres</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[Apellidos]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Apellidos"
+                      lineageId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada].Columns[Apellidos]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Apellidos</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen DB Admision_UNSA_Stage Tabla Ingresantes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Ingresantes]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT(ApellidosNombres) FROM Ingresantes</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-EJC8HHJ.Admision_UNSA_Stage]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].ExternalColumns[ApellidosNombres]"
+                      length="100"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].Columns[ApellidosNombres]"
+                      name="ApellidosNombres"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB].ExternalColumns[ApellidosNombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ApellidosNombres" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ApellidosNombres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de error de origen de OLE DB].Columns[ApellidosNombres]"
+                      name="ApellidosNombres" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar DimPostulante.Paths[Salida de columna derivada]"
+              endId="Package\Cargar DimPostulante\Columna ApellidosNombres.Inputs[Entrada de columna derivada]"
+              name="Salida de columna derivada"
+              startId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Cargar DimPostulante.Paths[Salida de columna derivada1]"
+              endId="Package\Cargar DimPostulante\Filtrado duplicados.Inputs[Entrada de búsqueda]"
+              name="Salida de columna derivada"
+              startId="Package\Cargar DimPostulante\Columna ApellidosNombres.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Cargar DimPostulante.Paths[Salida de entradas no coincidentes de búsqueda]"
+              endId="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de entradas no coincidentes de búsqueda"
+              startId="Package\Cargar DimPostulante\Filtrado duplicados.Outputs[Salida de entradas no coincidentes de búsqueda]" />
+            <path
+              refId="Package\Cargar DimPostulante.Paths[Salida de origen de OLE DB]"
+              endId="Package\Cargar DimPostulante\Columna Nombres-Apellidos.Inputs[Entrada de columna derivada]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Cargar DimPostulante"
+          TopLeft="5.49999999999997,36.6999999999999" />
+        <AnnotationLayout
+          Text="***********************************************************************************************&#xA;* Descripción: Carga de datos a la Tabla DimPostulante BD Admision_UNSA_DW                *&#xA;* Fecha de creación: 09/03/2017                                                                                            *&#xA;* Autor: Eddy Wilmer Canaza Tito                                                                                          *&#xA;***********************************************************************************************"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="507.2,104"
+          Id="e537467e-5198-4f95-891c-503220f7b7fa"
+          TopLeft="247.3,5.49999999999989" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar DimPostulante">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="324.8,41.6"
+          Id="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes"
+          TopLeft="9.09999999999999,5.50000000000007" />
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Cargar DimPostulante\Columna Nombres-Apellidos"
+          TopLeft="66.3,107.1" />
+        <NodeLayout
+          Size="332,41.6"
+          Id="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante"
+          TopLeft="5.50000000000006,411.9" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\Cargar DimPostulante\Filtrado duplicados"
+          TopLeft="88.3,310.3" />
+        <EdgeLayout
+          Id="Package\Cargar DimPostulante.Paths[Salida de origen de OLE DB]"
+          TopLeft="171.5,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar DimPostulante.Paths[Salida de entradas no coincidentes de búsqueda]"
+          TopLeft="171.5,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.8890234375,20.15234375,213.778046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\Cargar DimPostulante\Columna ApellidosNombres"
+          TopLeft="68.3,208.7" />
+        <EdgeLayout
+          Id="Package\Cargar DimPostulante.Paths[Salida de columna derivada]"
+          TopLeft="171.5,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar DimPostulante.Paths[Salida de columna derivada1]"
+          TopLeft="171.5,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DimPostulante\Origen DB Admision_UNSA_Stage Tabla Ingresantes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DimPostulante\Destino DB Admision_UNSA_DW Tabla DimPostulante">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar DimPostulante\Filtrado duplicados">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimPostulante]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

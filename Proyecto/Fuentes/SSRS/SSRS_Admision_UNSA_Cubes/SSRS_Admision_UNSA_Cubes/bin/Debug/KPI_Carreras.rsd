@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="KPI_Carreras">
+    <Query>
+      <DataSourceReference>Cube_Postulantes</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="ProcesoAdmisionProceso">
+          <DefaultValue>[Proceso Admision].[Proceso].&amp;[36]</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+          <rd:IsMultiValued>true</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="FacultadDescripcionFacultad">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+          <rd:IsMultiValued>true</rd:IsMultiValued>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText> SELECT NON EMPTY { [Measures].[Nro Vacantes], [Measures].[Nro Postulantes], [Measures].[Profit] } ON COLUMNS, NON EMPTY { ([Proceso Admision].[Proceso].[Proceso].ALLMEMBERS * [Facultad].[Descripcion Facultad].[Descripcion Facultad].ALLMEMBERS * [Carrera].[Carrera].[Carrera].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@FacultadDescripcionFacultad, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ProcesoAdmisionProceso, CONSTRAINED) ) ON COLUMNS FROM [Postulantes])) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+          <CommandType>MDX</CommandType>
+          <QuerySpecification xsi:type="MDXQuerySpecification">
+            <Select>
+              <Items>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Proceso Admision</DimensionName>
+                    <HierarchyName>Proceso</HierarchyName>
+                    <HierarchyUniqueName>[Proceso Admision].[Proceso]</HierarchyUniqueName>
+                    <LevelName>Proceso</LevelName>
+                    <UniqueName>[Proceso Admision].[Proceso].[Proceso]</UniqueName>
+                  </ID>
+                  <ItemCaption>Proceso</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Facultad</DimensionName>
+                    <HierarchyName>Descripcion Facultad</HierarchyName>
+                    <HierarchyUniqueName>[Facultad].[Descripcion Facultad]</HierarchyUniqueName>
+                    <LevelName>Descripcion Facultad</LevelName>
+                    <UniqueName>[Facultad].[Descripcion Facultad].[Descripcion Facultad]</UniqueName>
+                  </ID>
+                  <ItemCaption>Descripcion Facultad</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Carrera</DimensionName>
+                    <HierarchyName>Carrera</HierarchyName>
+                    <HierarchyUniqueName>[Carrera].[Carrera]</HierarchyUniqueName>
+                    <LevelName>Carrera</LevelName>
+                    <UniqueName>[Carrera].[Carrera].[Carrera]</UniqueName>
+                  </ID>
+                  <ItemCaption>Carrera</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Nro Vacantes</MeasureName>
+                    <UniqueName>[Measures].[Nro Vacantes]</UniqueName>
+                  </ID>
+                  <ItemCaption>Nro Vacantes</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Nro Postulantes</MeasureName>
+                    <UniqueName>[Measures].[Nro Postulantes]</UniqueName>
+                  </ID>
+                  <ItemCaption>Nro Postulantes</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Profit</MeasureName>
+                    <UniqueName>[Measures].[Profit]</UniqueName>
+                  </ID>
+                  <ItemCaption>Profit</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+              </Items>
+            </Select>
+            <From>Postulantes</From>
+            <Filter>
+              <FilterItems>
+                <FilterItem>
+                  <HierarchyUniqueName>[Proceso Admision].[Proceso]</HierarchyUniqueName>
+                  <Condition xsi:type="EqualTo">
+                    <Members>
+                      <Member>
+                        <MemberUniqueName>[Proceso Admision].[Proceso].&amp;[36]</MemberUniqueName>
+                      </Member>
+                    </Members>
+                    <Parametrized>true</Parametrized>
+                  </Condition>
+                </FilterItem>
+                <FilterItem>
+                  <HierarchyUniqueName>[Facultad].[Descripcion Facultad]</HierarchyUniqueName>
+                  <Condition xsi:type="EqualTo">
+                    <Members />
+                    <Parametrized>true</Parametrized>
+                  </Condition>
+                </FilterItem>
+              </FilterItems>
+            </Filter>
+            <Calculations />
+            <Aggregates />
+            <QueryProperties>
+              <IncludeMemberValue>true</IncludeMemberValue>
+            </QueryProperties>
+          </QuerySpecification>
+          <Query>
+            <Statement> SELECT NON EMPTY { [Measures].[Nro Vacantes], [Measures].[Nro Postulantes], [Measures].[Profit] } ON COLUMNS, NON EMPTY { ([Proceso Admision].[Proceso].[Proceso].ALLMEMBERS * [Facultad].[Descripcion Facultad].[Descripcion Facultad].ALLMEMBERS * [Carrera].[Carrera].[Carrera].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@FacultadDescripcionFacultad, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ProcesoAdmisionProceso, CONSTRAINED) ) ON COLUMNS FROM [Postulantes])) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+            <ParameterDefinitions>
+              <ParameterDefinition>
+                <Name>ProcesoAdmisionProceso</Name>
+                <DefaultValues>
+                  <DefaultValue>[Proceso Admision].[Proceso].&amp;[36]</DefaultValue>
+                </DefaultValues>
+                <Caption>Proceso</Caption>
+                <HierarchyUniqueName>[Proceso Admision].[Proceso]</HierarchyUniqueName>
+                <ParameterValuesQuery>
+                  <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Proceso Admision].[Proceso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Proceso Admision].[Proceso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Proceso Admision].[Proceso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Proceso Admision].[Proceso].ALLMEMBERS ON ROWS FROM [Postulantes]</Statement>
+                  <ParameterizedStatement>
+                    <ReferencedParameters />
+                  </ParameterizedStatement>
+                </ParameterValuesQuery>
+                <MultipleValues>true</MultipleValues>
+              </ParameterDefinition>
+              <ParameterDefinition>
+                <Name>FacultadDescripcionFacultad</Name>
+                <DefaultValues />
+                <Caption>Descripcion Facultad</Caption>
+                <HierarchyUniqueName>[Facultad].[Descripcion Facultad]</HierarchyUniqueName>
+                <ParameterValuesQuery>
+                  <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Facultad].[Descripcion Facultad].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ProcesoAdmisionProceso, CONSTRAINED) ) ON COLUMNS FROM [Postulantes])</Statement>
+                  <ParameterizedStatement>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Facultad].[Descripcion Facultad].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Facultad].[Descripcion Facultad].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ProcesoAdmisionProceso, CONSTRAINED) ) ON COLUMNS FROM [Postulantes])</Statement>
+                    <ReferencedParameters>
+                      <ReferencedParameter>
+                        <Name>ProcesoAdmisionProceso</Name>
+                      </ReferencedParameter>
+                    </ReferencedParameters>
+                  </ParameterizedStatement>
+                </ParameterValuesQuery>
+                <MultipleValues>true</MultipleValues>
+              </ParameterDefinition>
+            </ParameterDefinitions>
+          </Query>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Proceso">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Proceso Admision].[Proceso].[Proceso]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Descripcion_Facultad">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Facultad].[Descripcion Facultad].[Descripcion Facultad]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Carrera">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Carrera].[Carrera].[Carrera]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Nro_Vacantes">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Nro Vacantes]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Nro_Postulantes">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Nro Postulantes]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Profit">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Profit]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

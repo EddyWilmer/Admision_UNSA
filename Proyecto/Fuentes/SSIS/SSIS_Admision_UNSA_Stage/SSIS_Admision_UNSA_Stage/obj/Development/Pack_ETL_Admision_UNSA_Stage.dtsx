@@ -1,0 +1,1062 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/7/2017 10:18:28 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EJC8HHJ"
+  DTS:CreatorName="DESKTOP-EJC8HHJ\ecana"
+  DTS:DTSID="{C2101248-2934-4186-A56F-22D95869BB3B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="10250"
+  DTS:ObjectName="Pack_ETL_Admision_UNSA_Stage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="368"
+  DTS:VersionGUID="{6788B0EA-D5B4-41C1-A774-8A69DEB9CBB2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Con_Log_Pack_ETL_Admision_UNSA_Stage]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{E523B9AF-FD71-48CC-9CA9-60D01450A652}"
+      DTS:ObjectName="Con_Log_Pack_ETL_Admision_UNSA_Stage">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::Path_Log]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="D:\Admision_UNSA\SQL\Log\Log_Pack_ETL_Admision_UNSA_Stage.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_Areas.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{DF658291-3CB8-460D-90E8-E293436C0687}"
+      DTS:ObjectName="Pack_ETL_Areas.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_Areas.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_Carreras.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{6E206C93-FC05-4D3A-9814-A63B175FA85A}"
+      DTS:ObjectName="Pack_ETL_Carreras.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_Carreras.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_EspecialidadesEducacion.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A18DC3C4-C765-4A03-83F3-F77AA02AEBD9}"
+      DTS:ObjectName="Pack_ETL_EspecialidadesEducacion.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_EspecialidadesEducacion.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_EstadisticasCeprunsas.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{30F63235-A8B4-45EA-A07E-F84123D45D1D}"
+      DTS:ObjectName="Pack_ETL_EstadisticasCeprunsas.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_EstadisticasCeprunsas.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_EstadisticasOrdinarios.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{C7A42CCF-BB4C-4FC8-943D-677B8EC28B4C}"
+      DTS:ObjectName="Pack_ETL_EstadisticasOrdinarios.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_EstadisticasOrdinarios.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_Facultades.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{BA3F662F-9E0F-41A5-8284-C31A8537FD01}"
+      DTS:ObjectName="Pack_ETL_Facultades.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_Facultades.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_IngresantesCeprunsas.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A13658DD-796C-475B-B422-D61C2E29826E}"
+      DTS:ObjectName="Pack_ETL_IngresantesCeprunsas.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_IngresantesCeprunsas.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_IngresantesExtraordinarios.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{AABBE6E9-BE27-4A52-9AB7-761D2B7C5206}"
+      DTS:ObjectName="Pack_ETL_IngresantesExtraordinarios.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_IngresantesExtraordinarios.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_IngresantesOrdinarios.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B8627277-1B3D-4366-99BA-68D756A8F187}"
+      DTS:ObjectName="Pack_ETL_IngresantesOrdinarios.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_IngresantesOrdinarios.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_IngresantesSedes.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{72D206CA-1AD0-4FA6-8A5B-B843CFD11E39}"
+      DTS:ObjectName="Pack_ETL_IngresantesSedes.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_IngresantesSedes.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_ProcesosAdmision.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{68F99F5B-370B-47C1-A134-CB2953EF32F6}"
+      DTS:ObjectName="Pack_ETL_ProcesosAdmision.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_ProcesosAdmision.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_Sedes.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{1650604E-1F80-4C56-8745-6C564D1BFC15}"
+      DTS:ObjectName="Pack_ETL_Sedes.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_Sedes.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_TiposExtraordinarios.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B2CE5230-FAF1-4C99-A2DF-A4F060F40141}"
+      DTS:ObjectName="Pack_ETL_TiposExtraordinarios.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_TiposExtraordinarios.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_TiposProcesosAdmision.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{7A31632C-8804-4A91-9762-FD933005E9EF}"
+      DTS:ObjectName="Pack_ETL_TiposProcesosAdmision.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_Stage\SSIS_Admision_UNSA_Stage\Pack_ETL_TiposProcesosAdmision.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Con_Log_Pack_ETL_Admision_UNSA_Stage"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Escribe entradas del registro sobre eventos en un archivo CSV"
+      DTS:DTSID="{BD8BDB19-C3BA-4CD0-9F0B-C11BFFC137D1}"
+      DTS:ObjectName="Proveedor de registro SSIS para archivos de texto">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{BD8BDB19-C3BA-4CD0-9F0B-C11BFFC137D1}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Areas"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{0A58E6C7-BFD6-4C22-BD8A-8665C7172BC3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Areas"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Areas.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Areas_Facultades_Carreras</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Areas_Facultades_Carreras</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Carreras"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{8229C8F4-2EAF-4F0C-AE3F-D8B0346AA6CE}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Carreras"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Carreras.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Areas_Facultades_Carreras</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Areas_Facultades_Carreras</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Especialidades"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{0c69bdd4-5142-4e85-9be6-32691ae18040}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Especialidades"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Especialidades.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Sedes_Especialidades_Extraordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Sedes_Especialidades_Extraordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_EstadisticasCeprunsas"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{2efbc0bc-b713-43f1-81a6-6b7580bad228}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_EstadisticasCeprunsas"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_EstadisticasCeprunsas.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Ceprunsas</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Ceprunsas</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Ceprunsas</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Ceprunsas</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_EstadisticasOrdinarios"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{b12d22d6-1048-4dd2-9edb-5e655753f6d6}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_EstadisticasOrdinarios"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_EstadisticasOrdinarios.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Ordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Ordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Ordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Ordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Facultades"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{033eb6b2-a32b-408d-bf1d-0e091e607111}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Facultades"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Facultades.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Areas_Facultades_Carreras</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Areas_Facultades_Carreras</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_IngresantesCeprunsas"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{3f61a2d1-e11b-4a3b-a1c5-ee6578fe61b5}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_IngresantesCeprunsas"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_IngresantesCeprunsas.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Ceprunsas</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Ceprunsas</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Ceprunsas</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Ceprunsas</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_IngresantesExtraordinarios"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{732b71d3-cfba-4520-80bf-bd435ca99e35}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_IngresantesExtraordinarios"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_IngresantesExtraordinarios.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Extraordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Extraordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Extraordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Extraordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_IngresantesOrdinarios"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{355c51e1-85ce-44b7-9fdc-656284cf5367}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_IngresantesOrdinarios"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_IngresantesOrdinarios.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Ordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Ordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Ordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Ordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_IngresantesSedes"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{2ba6b66f-ea64-421d-bfd1-8c4f34d521f5}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_IngresantesSedes"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_IngresantesSedes.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Carpeta_Resultados_Sedes</ParameterName>
+            <BindedVariableOrParameterName>Path_Carpeta_Resultados_Sedes</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Resultados_Sedes</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Resultados_Sedes</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Modalidades"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{a256d20b-cffb-4418-b4bd-5d5fa7202b68}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Modalidades"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Modalidades.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Procesos_Admision</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Procesos_Admision</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_ModalidadesExtraordinarios"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{285695f2-9b29-4c2c-8dcd-e188b2c224e4}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_ModalidadesExtraordinarios"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_ModalidadesExtraordinarios.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Sedes_Especialidades_Extraordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Sedes_Especialidades_Extraordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_ProcesosAdmision"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{a7c9cff3-fbb3-4b02-83ac-28c9ef4ba80f}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_ProcesosAdmision"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_ProcesosAdmision.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Procesos_Admision</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Procesos_Admision</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar Pack_ETL_Sedes"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{97FB6BF3-C3B9-44F6-94D9-21EE02BB3578}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar Pack_ETL_Sedes"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_Sedes.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>Ch_Path_Excel_Sedes_Especialidades_Extraordinarios</ParameterName>
+            <BindedVariableOrParameterName>Path_Excel_Sedes_Especialidades_Extraordinarios</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D4BD178F-FF29-4580-8D21-E557ECBC5300}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Areas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_Facultades" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5F4C0E09-C3C7-4608-AA72-4A9EE03205B7}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Facultades"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_Carreras" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{C7AE3063-9084-4B52-A90C-78D826F22D1A}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_IngresantesCeprunsas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_IngresantesOrdinarios" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{96E1A1DF-EDA4-4928-9311-4FC69DB25374}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_IngresantesOrdinarios"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_IngresantesExtraordinarios" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{6FF69A90-DF6F-4861-BAA2-A821D05C8823}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_IngresantesExtraordinarios"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_IngresantesSedes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BB40591A-A5F5-448A-BC7B-E3F9FAFC6137}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Carreras"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_Modalidades" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{E41EA17C-F301-4F4B-A967-7C6158C69612}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Modalidades"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_ProcesosAdmision" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D958F971-F968-4526-A2F6-2FD4A802200A}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_ProcesosAdmision"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_Especialidades" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9129430E-6F87-4CE5-AE8B-CD3410472BA8}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Especialidades"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_ModalidadesExtraordinarios" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{92AEABD2-787A-41C5-9C9D-F72C85C3AC64}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_ModalidadesExtraordinarios"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_Sedes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{60164A84-6D3C-4DE8-A760-8ECA7EB7FD56}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_Sedes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_EstadisticasCeprunsas" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{FBC84F0E-3ABE-4099-9019-EA4F083C4AB4}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_EstadisticasCeprunsas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_EstadisticasOrdinarios" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{5D45BED1-3FA2-41A4-99F6-26B641E9C5CD}"
+      DTS:From="Package\Tarea Ejecutar Pack_ETL_EstadisticasOrdinarios"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Tarea Ejecutar Pack_ETL_IngresantesCeprunsas" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="227.2,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Areas"
+          TopLeft="57.1000000000001,5.49999999999995" />
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Carreras"
+          TopLeft="50.3,208.7" />
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Especialidades"
+          TopLeft="36.3000000000001,513.5" />
+        <NodeLayout
+          Size="304,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_EstadisticasCeprunsas"
+          TopLeft="18.7000000000002,818.299999999999" />
+        <NodeLayout
+          Size="304,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_EstadisticasOrdinarios"
+          TopLeft="18.7000000000002,919.899999999999" />
+        <NodeLayout
+          Size="251.2,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Facultades"
+          TopLeft="45.1000000000001,107.1" />
+        <NodeLayout
+          Size="305.6,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_IngresantesCeprunsas"
+          TopLeft="17.9000000000001,1021.5" />
+        <NodeLayout
+          Size="327.2,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_IngresantesExtraordinarios"
+          TopLeft="7.10000000000022,1224.7" />
+        <NodeLayout
+          Size="304.8,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_IngresantesOrdinarios"
+          TopLeft="18.3000000000002,1123.1" />
+        <NodeLayout
+          Size="284.8,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_IngresantesSedes"
+          TopLeft="28.3000000000002,1357.5" />
+        <NodeLayout
+          Size="259.2,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Modalidades"
+          TopLeft="41.1000000000001,310.3" />
+        <NodeLayout
+          Size="330.4,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_ModalidadesExtraordinarios"
+          TopLeft="5.50000000000011,615.099999999999" />
+        <NodeLayout
+          Size="285.6,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_ProcesosAdmision"
+          TopLeft="27.9000000000001,411.9" />
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Tarea Ejecutar Pack_ETL_Sedes"
+          TopLeft="56.3000000000001,716.699999999999" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="170.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="170.7,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="170.7,1063.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000005"
+              Start="0,0"
+              End="0,52.5000000000005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="170.7,1164.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="170.7,1266.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91.2000000000003"
+              Start="0,0"
+              End="0,83.7000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.7000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="170.7,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="170.7,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="170.7,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="170.7,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="170.7,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="170.7,758.299999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="170.7,859.899999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="170.7,961.499999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="**************************************************************************&#xA;* Descripción: Package Padre                                                                *&#xA;* Fecha de creación: 09/03/2017                                                           *&#xA;* Autor: Eddy Wilmer Canaza Tito                                                         *&#xA;**************************************************************************"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="399.2,104"
+          Id="16eea52a-15b1-4213-8c47-bbb71cb5e567"
+          TopLeft="323.899998910086,6.44115834153601" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

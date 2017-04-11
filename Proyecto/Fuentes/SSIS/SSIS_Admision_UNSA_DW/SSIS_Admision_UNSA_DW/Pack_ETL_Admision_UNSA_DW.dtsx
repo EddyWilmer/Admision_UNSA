@@ -1,0 +1,929 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/13/2017 2:33:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EJC8HHJ"
+  DTS:CreatorName="DESKTOP-EJC8HHJ\ecana"
+  DTS:DTSID="{A6F52271-077D-437B-8A68-6A540879622D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="10250"
+  DTS:ObjectName="Pack_ETL_Admision_UNSA_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{3C74C780-E88B-45FB-A1DF-7014BBD97CBA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Log_Pack_ETL_Admision_UNSA_DW.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{E8AB4259-41B8-4095-B7EC-F8C65096256E}"
+      DTS:ObjectName="Log_Pack_ETL_Admision_UNSA_DW.txt">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::Path_Log]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="D:\Admision_UNSA\SQL\Log\Log_Pack_ETL_Admision_UNSA_DW.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimArea.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{65D001D5-8CE6-42CB-8517-A50F81BD041C}"
+      DTS:ObjectName="Pack_EL_DimArea.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimArea.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimCarrera.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{40A73C0B-4E10-49D5-A811-8F5B16E93865}"
+      DTS:ObjectName="Pack_EL_DimCarrera.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimCarrera.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimEspecialidad.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B32D740C-CE12-4E8F-B4A2-F395EFF9F68C}"
+      DTS:ObjectName="Pack_EL_DimEspecialidad.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimEspecialidad.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimFacultad.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{86A24A74-DD8B-42D6-B5DA-A70E7752D151}"
+      DTS:ObjectName="Pack_EL_DimFacultad.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimFacultad.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimFase.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{625CA429-A4A2-44AC-A3EC-789619D0B7E5}"
+      DTS:ObjectName="Pack_EL_DimFase.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimFase.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimModalidad.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{C15133AF-8681-47EF-89D9-BDEE9273785F}"
+      DTS:ObjectName="Pack_EL_DimModalidad.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimModalidad.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimModalidadExtraordinario.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{538A1070-8842-4229-BE45-825EEA66AF40}"
+      DTS:ObjectName="Pack_EL_DimModalidadExtraordinario.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimModalidadExtraordinario.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_EL_DimSede.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{73C7959F-ABD9-4BD7-A4E6-5545E953BC13}"
+      DTS:ObjectName="Pack_EL_DimSede.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_EL_DimSede.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_DimPostulante.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{9B031D64-750F-48F9-9B18-C27C8DB5A4C5}"
+      DTS:ObjectName="Pack_ETL_DimPostulante.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_ETL_DimPostulante.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_DimProcesoAdmision.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{49305330-5360-4588-A565-33AEBBFF069D}"
+      DTS:ObjectName="Pack_ETL_DimProcesoAdmision.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_ETL_DimProcesoAdmision.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_ETL_DimTiempo.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B718CD24-DE75-42F2-B9E5-11A4104E0D04}"
+      DTS:ObjectName="Pack_ETL_DimTiempo.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_ETL_DimTiempo.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Pack_L_FactIngresantes.dtsx]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F4518C6C-BC1A-4775-9EAA-489158A35620}"
+      DTS:ObjectName="Pack_L_FactIngresantes.dtsx">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\ecana\Documents\Visual Studio 2015\Projects\SSIS_Admision_UNSA_DW\SSIS_Admision_UNSA_DW\Pack_L_FactIngresantes.dtsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Log_Pack_ETL_Admision_UNSA_DW.txt"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Escribe entradas del registro sobre eventos en un archivo CSV"
+      DTS:DTSID="{0D4AD78B-9C2E-42DD-A154-6919B04D1E83}"
+      DTS:ObjectName="Proveedor de registro SSIS para archivos de texto">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{0D4AD78B-9C2E-42DD-A154-6919B04D1E83}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimArea"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{45B273B4-6752-4201-978B-430A3AEB15E3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimArea"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimArea.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimCarrera"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{32BA14F8-F51E-437B-9010-D8F184765155}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimCarrera"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimCarrera.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimEspecialidad"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{95e20d4e-a260-45a3-95aa-1d8c4ffbb64f}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimEspecialidad"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimEspecialidad.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimFacultad"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{036dd4bd-5c49-4035-aab0-c369c26766e4}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimFacultad"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimFacultad.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimFase"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{3663c4eb-f13c-4eb0-8686-ff0aea9db4f7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimFase"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimFase.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimModalidad"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{6639dbc2-42c1-462f-933b-1bbf881a8ff7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimModalidad"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimModalidad.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimModalidadExtraordinario"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{a83bc97c-9b9b-4363-8d41-857f87eb61c7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimModalidadExtraordinario"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimModalidadExtraordinario.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_EL_DimSede"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{92d23831-450c-4d60-a960-f403c210135d}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_EL_DimSede"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_EL_DimSede.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_ETL_DimPostulante"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{71f1460f-c890-4448-9ca2-3c6923d92b4e}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_ETL_DimPostulante"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_DimPostulante.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_ETL_DimProcesoAdmision"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{93a5bbbd-b8c8-45d7-96f5-5ec1c73814a7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_ETL_DimProcesoAdmision"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_DimProcesoAdmision.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_ETL_DimTiempo"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{fd671f31-8f7c-4e37-8e0a-c5685bd3e54f}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_ETL_DimTiempo"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_ETL_DimTiempo.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_L_FactIngresantes"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{362f5225-3e8e-4c84-bd4f-22887a9251ab}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_L_FactIngresantes"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_L_FactIngresantes.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ejecutar Pack_L_FactPostulantes"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Tarea Ejecutar paquete"
+      DTS:DTSID="{778d48aa-bc3b-4ffb-afee-881f35fbc67d}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ejecutar Pack_L_FactPostulantes"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Pack_L_FactPostulantes.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>Ch_Server_Name</ParameterName>
+            <BindedVariableOrParameterName>Server_Name</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F0F0A5E0-6FC7-486B-8344-8D31F2A956A3}"
+      DTS:From="Package\Ejecutar Pack_EL_DimArea"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Ejecutar Pack_EL_DimFacultad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{77FB9747-2AC5-4C88-AEC5-4F3B721D83BF}"
+      DTS:From="Package\Ejecutar Pack_EL_DimFacultad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Ejecutar Pack_EL_DimCarrera" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{0261AB36-7134-4060-BFFB-7BA64C5E7F95}"
+      DTS:From="Package\Ejecutar Pack_ETL_DimPostulante"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Ejecutar Pack_L_FactIngresantes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{133EA494-985B-4484-B39C-9C8C7E782DA7}"
+      DTS:From="Package\Ejecutar Pack_L_FactIngresantes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Ejecutar Pack_L_FactPostulantes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2074DD05-19B6-474C-9854-EAC67CB05D33}"
+      DTS:From="Package\Ejecutar Pack_EL_DimCarrera"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Ejecutar Pack_EL_DimModalidad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{99988A99-FE91-4156-BAB0-4AAA575E10ED}"
+      DTS:From="Package\Ejecutar Pack_EL_DimModalidad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Ejecutar Pack_EL_DimFase" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{FDD06E32-B101-4ADC-AA1E-D157B504ED65}"
+      DTS:From="Package\Ejecutar Pack_EL_DimFase"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Ejecutar Pack_EL_DimEspecialidad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9508D984-61BD-49C5-B410-7F9D56156494}"
+      DTS:From="Package\Ejecutar Pack_EL_DimEspecialidad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Ejecutar Pack_EL_DimModalidadExtraordinario" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{F06C4FCF-2569-4C58-99C2-D0BDF78A4F76}"
+      DTS:From="Package\Ejecutar Pack_EL_DimModalidadExtraordinario"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Ejecutar Pack_EL_DimSede" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{8107DF6A-7A8C-494C-A389-9B2BB6730899}"
+      DTS:From="Package\Ejecutar Pack_EL_DimSede"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Ejecutar Pack_ETL_DimProcesoAdmision" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{52950365-2AF7-4E36-A548-EBE5F00AFC2E}"
+      DTS:From="Package\Ejecutar Pack_ETL_DimProcesoAdmision"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Ejecutar Pack_ETL_DimTiempo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{9AB27D12-753F-4881-B667-A956124D138E}"
+      DTS:From="Package\Ejecutar Pack_ETL_DimTiempo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Ejecutar Pack_ETL_DimPostulante" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\Ejecutar Pack_EL_DimArea"
+          TopLeft="51.5,5.49999999999995" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Ejecutar Pack_EL_DimCarrera"
+          TopLeft="44.7,208.7" />
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\Ejecutar Pack_EL_DimEspecialidad"
+          TopLeft="33.5,513.5" />
+        <NodeLayout
+          Size="223.2,41.6"
+          Id="Package\Ejecutar Pack_EL_DimFacultad"
+          TopLeft="42.3,107.1" />
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\Ejecutar Pack_EL_DimFase"
+          TopLeft="51.5,411.9" />
+        <NodeLayout
+          Size="231.2,41.6"
+          Id="Package\Ejecutar Pack_EL_DimModalidad"
+          TopLeft="38.3,310.3" />
+        <NodeLayout
+          Size="296.8,41.6"
+          Id="Package\Ejecutar Pack_EL_DimModalidadExtraordinario"
+          TopLeft="5.50000000000003,615.099999999999" />
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\Ejecutar Pack_EL_DimSede"
+          TopLeft="50.7000000000001,716.699999999999" />
+        <NodeLayout
+          Size="239.2,41.6"
+          Id="Package\Ejecutar Pack_ETL_DimPostulante"
+          TopLeft="34.3000000000001,1021.5" />
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\Ejecutar Pack_ETL_DimProcesoAdmision"
+          TopLeft="19.5000000000001,818.299999999999" />
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\Ejecutar Pack_ETL_DimTiempo"
+          TopLeft="41.5000000000001,919.9" />
+        <NodeLayout
+          Size="234.4,41.6"
+          Id="Package\Ejecutar Pack_L_FactIngresantes"
+          TopLeft="36.7000000000001,1123.1" />
+        <NodeLayout
+          Size="232.8,41.6"
+          Id="Package\Ejecutar Pack_L_FactPostulantes"
+          TopLeft="37.5000000000001,1255.9" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="153.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="153.9,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="153.9,1063.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="153.9,1164.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91.2000000000003"
+              Start="0,0"
+              End="0,83.7000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.7000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="153.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="153.9,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="153.9,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="153.9,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="153.9,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="153.9,758.299999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="153.9,859.899999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="153.9,961.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000002"
+              Start="0,0"
+              End="0,52.5000000000002">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000002" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="***********************************************************************************************&#xA;* Descripción: Package Padre                                                                                                 *&#xA;* Fecha de creación: 09/03/2017                                                                                            *&#xA;* Autor: Eddy Wilmer Canaza Tito                                                                                          *&#xA;*********************************************************************************************** "
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="507.2,104"
+          Id="9a18880f-e90b-4f5a-b1fe-24528bd1e262"
+          TopLeft="297.128570669524,22.5823360819299" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

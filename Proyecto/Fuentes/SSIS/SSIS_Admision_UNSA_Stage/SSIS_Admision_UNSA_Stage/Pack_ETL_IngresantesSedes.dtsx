@@ -1,0 +1,2206 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/11/2017 9:13:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EJC8HHJ"
+  DTS:CreatorName="DESKTOP-EJC8HHJ\ecana"
+  DTS:DTSID="{50C77478-4004-49A2-8811-D03355C18059}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="10250"
+  DTS:ObjectName="Pack_ETL_IngresantesSedes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{13EDF758-7502-4796-9B18-8321782A04C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{92AD02BF-7472-43E5-90D5-D6201CE0ABCB}"
+      DTS:ObjectName="Con_BD_Admision_UNSA_Stage">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::Server_Name]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-EJC8HHJ;Initial Catalog=Admision_UNSA_Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Con_Excel_Resultados_Sedes]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{631FF0DD-F0D7-4AD0-A4E9-1A56E3EBA1D5}"
+      DTS:ObjectName="Con_Excel_Resultados_Sedes">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::Aux_Iterator]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{57BF49F4-7421-4BFF-A2FD-B38ED627078A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Aux_Iterator">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Recorrer archivos procesos Sedes"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{77b6fce4-a0ce-4fd2-a826-852bc10bdfe0}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Recorrer archivos procesos Sedes">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{3294be48-5ad0-4755-af86-54cf6b93ff61}"
+        DTS:ObjectName="{A908E3D5-F384-4F7D-A073-BAAB9EF14DFC}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::Path_Carpeta_Resultados_Sedes]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\Admision_UNSA\Fuentes_Datos\Resultados" />
+            <FEFEProperty
+              FileSpec="Sedes*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{91f6a52f-6dff-45cd-8d4c-0107737373a3}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Cargar Ingresantes Sedes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna derivada PathFileResultados"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]"
+                          name="FilePath"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[RIGHT](@[User::Aux_Iterator],[FINDSTRING]([REVERSE](@[User::Aux_Iterator]),"\\",1) - 1)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RIGHT(@[User::Aux_Iterator],FINDSTRING(REVERSE(@[User::Aux_Iterator]),"\\",1) - 1)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna ModalidadExtraordinario-Fase-Especialidad"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[ModalidadExtraordinario]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[ModalidadExtraordinario]"
+                          name="ModalidadExtraordinario"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">"NA"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"NA"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Fase]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Fase]"
+                          name="Fase"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">"NA"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"NA"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Especialidad]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Especialidad]"
+                          name="Especialidad"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">"NA"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"NA"</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna Tipo-Anio"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada].Columns[FilePath]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FilePath"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada].Columns[CARRERA]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CARRERA"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[TipoAdmision]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[TipoAdmision]"
+                          name="TipoAdmision"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[UPPER]([LEFT](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]},[FINDSTRING](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]},"-",1) - 1))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">UPPER(LEFT(FilePath,FINDSTRING(FilePath,"-",1) - 1))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[AnioAdmision]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[AnioAdmision]"
+                          name="AnioAdmision"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[SUBSTRING](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]},[FINDSTRING](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada].Columns[FilePath]},"-",1) + 1,4)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(FilePath,FINDSTRING(FilePath,"-",1) + 1,4)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[Carrera]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[Carrera]"
+                          name="Carrera"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[TRIM](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(CARRERA)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversión de datos"
+                  name="Conversión datos"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos]"
+                      name="Entrada de conversión de datos">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[AnioAdmision]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="AnioAdmision"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[AnioAdmision]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[TipoAdmision]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="TipoAdmision"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[TipoAdmision]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[APELLIDOS Y NOMBRES]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="APELLIDOS Y NOMBRES"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[Carrera]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Carrera"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[Carrera]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[SEDE]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SEDE"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[SEDE]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[PUESTO]"
+                          cachedDataType="r8"
+                          cachedName="PUESTO"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[PUNTAJE]"
+                          cachedDataType="r8"
+                          cachedName="PUNTAJE"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[ModalidadExtraordinario]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="ModalidadExtraordinario"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[ModalidadExtraordinario]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[Fase]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Fase"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Fase]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos].Columns[Especialidad]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Especialidad"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Especialidad]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos]"
+                      exclusionGroup="1"
+                      name="Salida de conversión de datos"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[AnioAdmisionT]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[AnioAdmisionT]"
+                          name="AnioAdmisionT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[AnioAdmision]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[TipoAdmisionT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[TipoAdmisionT]"
+                          name="TipoAdmisionT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[TipoAdmision]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]"
+                          name="CarreraT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada].Columns[Carrera]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]"
+                          name="ApellidosNombresT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]"
+                          name="SedeT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[SEDE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuestoT]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuestoT]"
+                          name="PuestoT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuntajeT]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuntajeT]"
+                          name="PuntajeT"
+                          precision="10"
+                          scale="6"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]"
+                          name="ModalidadExtraordinarioT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[ModalidadExtraordinario]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]"
+                          name="FaseT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Fase]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]"
+                          name="EspecialidadT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada].Columns[Especialidad]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de error de conversión de datos]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de conversión de datos"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino Tabla Ingresantes BD Admision_UNSA_Stage"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[Ingresantes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+                      connectionManagerRefId="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[PuntajeT]"
+                          cachedDataType="numeric"
+                          cachedName="PuntajeT"
+                          cachedPrecision="10"
+                          cachedScale="6"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Puntaje]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuntajeT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[PuestoT]"
+                          cachedDataType="i4"
+                          cachedName="PuestoT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[OrdenMerito]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuestoT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[AnioAdmisionT]"
+                          cachedDataType="i4"
+                          cachedName="AnioAdmisionT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Anio]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[AnioAdmisionT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[CarreraT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="CarreraT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Carrera]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[ApellidosNombresT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ApellidosNombresT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[ApellidosNombres]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[SedeT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SedeT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sede]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[FaseT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FaseT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fase]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[EspecialidadT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="EspecialidadT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Especialidad]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[TipoAdmisionT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TipoAdmisionT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Modalidad]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[TipoAdmisionT]" />
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].Columns[ModalidadExtraordinarioT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ModalidadExtraordinarioT"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[ModalidadExtraordinario]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[OrdenMerito]"
+                          dataType="i4"
+                          name="OrdenMerito" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Puntaje]"
+                          dataType="numeric"
+                          name="Puntaje"
+                          precision="10"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Anio]"
+                          dataType="i4"
+                          name="Anio" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fase]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Fase" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Carrera]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Carrera" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[ApellidosNombres]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ApellidosNombres" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Especialidad]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Especialidad" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sede]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Sede" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[Modalidad]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Modalidad" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB].ExternalColumns[ModalidadExtraordinario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ModalidadExtraordinario" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+                  name="División condicional No Nulls"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional]"
+                      description="Entrada en la transformación División condicional"
+                      name="Entrada de división condicional">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional].Columns[CARRERA]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CARRERA"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[No Nulls]"
+                      description="Salida 1 de la transformación División condicional"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="No Nulls"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                          name="Expression">![ISNULL](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                          expressionType="Notify"
+                          name="FriendlyExpression">!ISNULL(CARRERA)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida predeterminada de división condicional]"
+                      description="Salida predeterminada de la transformación División condicional"
+                      exclusionGroup="1"
+                      name="Salida predeterminada de división condicional"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida de error de división condicional]"
+                      description="Salida de error de la transformación División condicional"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de división condicional"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+                  description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+                  name="Filtrado duplicados"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Ingresantes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Ingresantes]) [refTable]
+where [refTable].[Anio] = ? and [refTable].[Modalidad] = ? and [refTable].[Carrera] = ? and [refTable].[ApellidosNombres] = ? and [refTable].[Sede] = ? and [refTable].[OrdenMerito] = ? and [refTable].[Puntaje] = ? and [refTable].[ModalidadExtraordinario] = ? and [refTable].[Fase] = ? and [refTable].[Especialidad] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de caché de la tabla de búsqueda."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indica si se debe hacer referencia a metadatos en formato XML."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Anio" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Modalidad" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Fase" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrdenMerito" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Carrera" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ApellidosNombres" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Puntaje" dataType="DT_NUMERIC" length="0" precision="10" scale="6" codePage="0"/&gt;&lt;referenceColumn name="Especialidad" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ModalidadExtraordinario" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Sede" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                      name="ParameterMap">#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[AnioAdmisionT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[TipoAdmisionT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuestoT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuntajeT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]};#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+                      connectionManagerRefId="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+                      description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda]"
+                      name="Entrada de búsqueda">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[AnioAdmisionT]"
+                          cachedDataType="i4"
+                          cachedName="AnioAdmisionT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[AnioAdmisionT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Anio</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[TipoAdmisionT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TipoAdmisionT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[TipoAdmisionT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Modalidad</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[CarreraT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="CarreraT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Carrera</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[ApellidosNombresT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ApellidosNombresT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">ApellidosNombres</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[SedeT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SedeT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Sede</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[PuestoT]"
+                          cachedDataType="i4"
+                          cachedName="PuestoT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuestoT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">OrdenMerito</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[PuntajeT]"
+                          cachedDataType="numeric"
+                          cachedName="PuntajeT"
+                          cachedPrecision="10"
+                          cachedScale="6"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[PuntajeT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Puntaje</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[ModalidadExtraordinarioT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ModalidadExtraordinarioT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">ModalidadExtraordinario</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[FaseT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FaseT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Fase</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda].Columns[EspecialidadT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="EspecialidadT"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                              name="JoinToReferenceColumn">Especialidad</property>
+                            <property
+                              dataType="System.Null"
+                              description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de entradas coincidentes de búsqueda]"
+                      errorOrTruncationOperation="Búsqueda"
+                      exclusionGroup="1"
+                      name="Salida de entradas coincidentes de búsqueda"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                      description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                      exclusionGroup="1"
+                      name="Salida de entradas no coincidentes de búsqueda"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de error de búsqueda]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de búsqueda"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origen de Excel"
+                  name="Origen Hoja Ingresantes Carpeta Resultados"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">Ingresantes$</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="La asignación de parámetros del comando SQL a variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Con_Excel_Resultados_Sedes]"
+                      connectionManagerRefId="Package.ConnectionManagers[Con_Excel_Resultados_Sedes]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel]"
+                      name="Salida de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[CARRERA]"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]"
+                          name="CARRERA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUESTO]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]"
+                          name="PUESTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[APELLIDOS Y NOMBRES]"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          name="APELLIDOS Y NOMBRES"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUNTAJE]"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]"
+                          name="PUNTAJE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[SEDE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[SEDE]"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[SEDE]"
+                          name="SEDE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[CARRERA]"
+                          dataType="wstr"
+                          length="255"
+                          name="CARRERA" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUESTO]"
+                          dataType="r8"
+                          name="PUESTO" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          length="255"
+                          name="APELLIDOS Y NOMBRES" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUNTAJE]"
+                          dataType="r8"
+                          name="PUNTAJE" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[F7]"
+                          dataType="wstr"
+                          length="255"
+                          name="F7" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[SEDE]"
+                          dataType="wstr"
+                          length="255"
+                          name="SEDE" />
+                        <externalMetadataColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[F6]"
+                          dataType="wstr"
+                          length="255"
+                          name="F6" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUESTO]"
+                          dataType="r8"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUESTO]"
+                          name="PUESTO" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[CARRERA]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[CARRERA]"
+                          name="CARRERA" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          name="APELLIDOS Y NOMBRES" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUNTAJE]"
+                          dataType="r8"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUNTAJE]"
+                          name="PUNTAJE" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[SEDE]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[SEDE]"
+                          name="SEDE" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Trim campos"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada].Columns[CarreraT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="CarreraT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[TRIM](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[CarreraT]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(CarreraT)</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada].Columns[ApellidosNombresT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ApellidosNombresT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[TRIM](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ApellidosNombresT]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(ApellidosNombresT)</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada].Columns[SedeT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SedeT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[TRIM](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[SedeT]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(SedeT)</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Verificacion NA"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada].Columns[FaseT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FaseT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[REPLACENULL](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[FaseT]},"NA")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL(FaseT,"NA")</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada].Columns[ModalidadExtraordinarioT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ModalidadExtraordinarioT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[REPLACENULL](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[ModalidadExtraordinarioT]},"NA")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL(ModalidadExtraordinarioT,"NA")</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada].Columns[EspecialidadT]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="EspecialidadT"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">[REPLACENULL](#{Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos].Columns[EspecialidadT]},"NA")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL(EspecialidadT,"NA")</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[No Nulls]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Inputs[Entrada de columna derivada]"
+                  name="No Nulls"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Outputs[No Nulls]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Inputs[Entrada de columna derivada]"
+                  name="Salida de columna derivada"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada1]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Inputs[Entrada de columna derivada]"
+                  name="Salida de columna derivada"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada2]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Inputs[Entrada de conversión de datos]"
+                  name="Salida de columna derivada"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada3]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Inputs[Entrada de columna derivada]"
+                  name="Salida de columna derivada"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada4]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Inputs[Entrada de búsqueda]"
+                  name="Salida de columna derivada"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de conversión de datos]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos.Inputs[Entrada de columna derivada]"
+                  name="Salida de conversión de datos"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos.Outputs[Salida de conversión de datos]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de entradas no coincidentes de búsqueda]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados.Outputs[Salida de entradas no coincidentes de búsqueda]" />
+                <path
+                  refId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de origen de Excel]"
+                  endId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls.Inputs[Entrada de división condicional]"
+                  name="Salida de origen de Excel"
+                  startId="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C620F4DA-353D-4DED-BB47-5FF636B64107}"
+          DTS:ObjectName="{C620F4DA-353D-4DED-BB47-5FF636B64107}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Aux_Iterator" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes"
+          TopLeft="5.5,5.49999999999995" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="211.2,102.4"
+          Size="211.2,145.6"
+          Id="Package\Recorrer archivos procesos Sedes"
+          TopLeft="5.50000000000009,5.49999999999984" />
+        <AnnotationLayout
+          Text="***********************************************************************************************&#xA;* Descripción: Carga de datos a la Tabla Ingresantes BD Admision_UNSA_Stage                 *&#xA;* Fecha de creación: 09/03/2017                                                                                            *&#xA;* Autor: Eddy Wilmer Canaza Tito                                                                                          *&#xA;***********************************************************************************************"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="506.4,104"
+          Id="99a6114e-222e-4a9c-aa37-16155dd1ec70"
+          TopLeft="276.9,26.2999999999998" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Trim campos"
+          TopLeft="100.7,615.099999999999" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna Tipo-Anio"
+          TopLeft="86.3,310.3" />
+        <NodeLayout
+          Size="323.2,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna ModalidadExtraordinario-Fase-Especialidad"
+          TopLeft="8.70000000000007,411.9" />
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Conversión datos"
+          TopLeft="90.7000000000001,513.5" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\División condicional No Nulls"
+          TopLeft="63.9,107.1" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Verificacion NA"
+          TopLeft="95.9000000000001,716.699999999999" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados"
+          TopLeft="87.1000000000001,818.299999999999" />
+        <NodeLayout
+          Size="329.6,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage"
+          TopLeft="5.50000000000011,919.899999999999" />
+        <NodeLayout
+          Size="254.4,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Columna derivada PathFileResultados"
+          TopLeft="43.1,208.7" />
+        <NodeLayout
+          Size="288,41.6"
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Origen Hoja Ingresantes Carpeta Resultados"
+          TopLeft="26.3,5.49999999999995" />
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de conversión de datos]"
+          TopLeft="170.3,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.999999999999"
+              Start="0,0"
+              End="0,52.499999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.499999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada4]"
+          TopLeft="170.3,758.299999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada3]"
+          TopLeft="170.3,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada2]"
+          TopLeft="170.3,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada1]"
+          TopLeft="170.3,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de columna derivada]"
+          TopLeft="170.3,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[No Nulls]"
+          TopLeft="170.3,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.797578125,21.37548828125,37.59515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de origen de Excel]"
+          TopLeft="170.3,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes.Paths[Salida de entradas no coincidentes de búsqueda]"
+          TopLeft="170.3,859.899999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.8890234375,20.15234375,213.778046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Filtrado duplicados">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Ingresantes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Recorrer archivos procesos Sedes\Cargar Ingresantes Sedes\Destino Tabla Ingresantes BD Admision_UNSA_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

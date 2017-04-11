@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="Ingresantes_Area">
+    <Query>
+      <DataSourceReference>Cube_Ingresantes</DataSourceReference>
+      <CommandText> SELECT NON EMPTY { [Measures].[Nro Ingresantes], [Measures].[Mínimo Puntaje], [Measures].[Máximo Puntaje], [Measures].[Puntaje Promedio], [Measures].[Puntaje] } ON COLUMNS, NON EMPTY { ([Tiempo].[Hierarchy].[Mes].ALLMEMBERS * [Proceso Admision].[Proceso].[Proceso].ALLMEMBERS * [Area].[Área].[Área].ALLMEMBERS * [Facultad].[Facultad].[Facultad].ALLMEMBERS * [Carrera].[Carrera].[Carrera].ALLMEMBERS * [Modalidad].[Modalidad].[Modalidad].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [Ingresantes] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+          <CommandType>MDX</CommandType>
+          <QuerySpecification xsi:type="MDXQuerySpecification">
+            <Select>
+              <Items>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Tiempo</DimensionName>
+                    <HierarchyName>Hierarchy</HierarchyName>
+                    <HierarchyUniqueName>[Tiempo].[Hierarchy]</HierarchyUniqueName>
+                    <LevelName>Año</LevelName>
+                    <UniqueName>[Tiempo].[Hierarchy].[Año]</UniqueName>
+                  </ID>
+                  <ItemCaption>Año</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Tiempo</DimensionName>
+                    <HierarchyName>Hierarchy</HierarchyName>
+                    <HierarchyUniqueName>[Tiempo].[Hierarchy]</HierarchyUniqueName>
+                    <LevelName>Mes</LevelName>
+                    <UniqueName>[Tiempo].[Hierarchy].[Mes]</UniqueName>
+                  </ID>
+                  <ItemCaption>Mes</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Proceso Admision</DimensionName>
+                    <HierarchyName>Proceso</HierarchyName>
+                    <HierarchyUniqueName>[Proceso Admision].[Proceso]</HierarchyUniqueName>
+                    <LevelName>Proceso</LevelName>
+                    <UniqueName>[Proceso Admision].[Proceso].[Proceso]</UniqueName>
+                  </ID>
+                  <ItemCaption>Proceso</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Area</DimensionName>
+                    <HierarchyName>Área</HierarchyName>
+                    <HierarchyUniqueName>[Area].[Área]</HierarchyUniqueName>
+                    <LevelName>Área</LevelName>
+                    <UniqueName>[Area].[Área].[Área]</UniqueName>
+                  </ID>
+                  <ItemCaption>Área</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Facultad</DimensionName>
+                    <HierarchyName>Facultad</HierarchyName>
+                    <HierarchyUniqueName>[Facultad].[Facultad]</HierarchyUniqueName>
+                    <LevelName>Facultad</LevelName>
+                    <UniqueName>[Facultad].[Facultad].[Facultad]</UniqueName>
+                  </ID>
+                  <ItemCaption>Facultad</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Carrera</DimensionName>
+                    <HierarchyName>Carrera</HierarchyName>
+                    <HierarchyUniqueName>[Carrera].[Carrera]</HierarchyUniqueName>
+                    <LevelName>Carrera</LevelName>
+                    <UniqueName>[Carrera].[Carrera].[Carrera]</UniqueName>
+                  </ID>
+                  <ItemCaption>Carrera</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Level">
+                    <DimensionName>Modalidad</DimensionName>
+                    <HierarchyName>Modalidad</HierarchyName>
+                    <HierarchyUniqueName>[Modalidad].[Modalidad]</HierarchyUniqueName>
+                    <LevelName>Modalidad</LevelName>
+                    <UniqueName>[Modalidad].[Modalidad].[Modalidad]</UniqueName>
+                  </ID>
+                  <ItemCaption>Modalidad</ItemCaption>
+                  <UniqueName>true</UniqueName>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Nro Ingresantes</MeasureName>
+                    <UniqueName>[Measures].[Nro Ingresantes]</UniqueName>
+                  </ID>
+                  <ItemCaption>Nro Ingresantes</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Mínimo Puntaje</MeasureName>
+                    <UniqueName>[Measures].[Mínimo Puntaje]</UniqueName>
+                  </ID>
+                  <ItemCaption>Mínimo Puntaje</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Máximo Puntaje</MeasureName>
+                    <UniqueName>[Measures].[Máximo Puntaje]</UniqueName>
+                  </ID>
+                  <ItemCaption>Máximo Puntaje</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Puntaje Promedio</MeasureName>
+                    <UniqueName>[Measures].[Puntaje Promedio]</UniqueName>
+                  </ID>
+                  <ItemCaption>Puntaje Promedio</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+                <Item>
+                  <ID xsi:type="Measure">
+                    <MeasureName>Puntaje</MeasureName>
+                    <UniqueName>[Measures].[Puntaje]</UniqueName>
+                  </ID>
+                  <ItemCaption>Puntaje</ItemCaption>
+                  <BackColor>true</BackColor>
+                  <ForeColor>true</ForeColor>
+                  <FontFamily>true</FontFamily>
+                  <FontSize>true</FontSize>
+                  <FontWeight>true</FontWeight>
+                  <FontStyle>true</FontStyle>
+                  <FontDecoration>true</FontDecoration>
+                  <FormattedValue>true</FormattedValue>
+                  <FormatString>true</FormatString>
+                </Item>
+              </Items>
+            </Select>
+            <From>Ingresantes</From>
+            <Filter>
+              <FilterItems />
+            </Filter>
+            <Calculations />
+            <Aggregates />
+            <QueryProperties>
+              <IncludeMemberValue>true</IncludeMemberValue>
+            </QueryProperties>
+          </QuerySpecification>
+          <Query>
+            <Statement> SELECT NON EMPTY { [Measures].[Nro Ingresantes], [Measures].[Mínimo Puntaje], [Measures].[Máximo Puntaje], [Measures].[Puntaje Promedio], [Measures].[Puntaje] } ON COLUMNS, NON EMPTY { ([Tiempo].[Hierarchy].[Mes].ALLMEMBERS * [Proceso Admision].[Proceso].[Proceso].ALLMEMBERS * [Area].[Área].[Área].ALLMEMBERS * [Facultad].[Facultad].[Facultad].ALLMEMBERS * [Carrera].[Carrera].[Carrera].ALLMEMBERS * [Modalidad].[Modalidad].[Modalidad].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [Ingresantes] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+            <ParameterDefinitions />
+          </Query>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Año">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Tiempo].[Hierarchy].[Año]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Mes">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Tiempo].[Hierarchy].[Mes]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Proceso">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Proceso Admision].[Proceso].[Proceso]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Área">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Area].[Área].[Área]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Facultad">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Facultad].[Facultad].[Facultad]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Carrera">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Carrera].[Carrera].[Carrera]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Modalidad">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Modalidad].[Modalidad].[Modalidad]" /&gt;</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Nro_Ingresantes">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Nro Ingresantes]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Mínimo_Puntaje">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Mínimo Puntaje]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Máximo_Puntaje">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Máximo Puntaje]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Puntaje_Promedio">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Puntaje Promedio]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Puntaje">
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Puntaje]" /&gt;</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

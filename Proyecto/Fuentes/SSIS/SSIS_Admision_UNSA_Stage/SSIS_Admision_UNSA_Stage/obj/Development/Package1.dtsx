@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/27/2017 1:32:37 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EJC8HHJ"
+  DTS:CreatorName="DESKTOP-EJC8HHJ\ecana"
+  DTS:DTSID="{C96C37BA-75DC-4EE5-AD91-ED70DBDDCA67}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="10250"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{8122ADA1-10CA-4DE7-AFBA-D7A02B43B9E2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Con_BD_Admision_UNSA_Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{92AD02BF-7472-43E5-90D5-D6201CE0ABCB}"
+      DTS:ObjectName="Con_BD_Admision_UNSA_Stage">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::Server_Name]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-EJC8HHJ;Initial Catalog=Admision_UNSA_Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{576654BC-9C17-4CF4-ABA5-D9C7E62B085A}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::FilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6925AB99-6614-429E-A1F5-F1307C1C9C83}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePath">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{39574A2D-B4B7-4330-8AB7-F8390544B975}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{7BFE9EB2-8207-4F13-8B07-A1E4D71F0FC6}"
+        DTS:ObjectName="{7BFE9EB2-8207-4F13-8B07-A1E4D71F0FC6}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\Admision_UNSA\Fuentes_Datos\Resultados" />
+            <FEFEProperty
+              FileSpec="Cep*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Tarea Flujo de datos"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{D89AC84E-0937-4F27-B7D1-6AB84D6E8758}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Flujo de datos"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origen de Excel"
+                  name="Origen Hoja Ingresantes Carpeta Resultados"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">Ingresantes$</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="La asignación de parámetros del comando SQL a variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel]"
+                      name="Salida de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[CARRERA]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[CARRERA]"
+                          name="CARRERA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUESTO]"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUESTO]"
+                          name="PUESTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[APELLIDOS Y NOMBRES]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          name="APELLIDOS Y NOMBRES"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUNTAJE]"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[PUNTAJE]"
+                          name="PUNTAJE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[ESPECIALIDAD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[ESPECIALIDAD]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].Columns[ESPECIALIDAD]"
+                          name="ESPECIALIDAD"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[CARRERA]"
+                          dataType="wstr"
+                          length="255"
+                          name="CARRERA" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUESTO]"
+                          dataType="r8"
+                          name="PUESTO" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          length="255"
+                          name="APELLIDOS Y NOMBRES" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[PUNTAJE]"
+                          dataType="r8"
+                          name="PUNTAJE" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[ESPECIALIDAD]"
+                          dataType="wstr"
+                          length="255"
+                          name="ESPECIALIDAD" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de origen de Excel].ExternalColumns[F6]"
+                          dataType="wstr"
+                          length="255"
+                          name="F6" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUESTO]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUESTO]"
+                          name="PUESTO" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[CARRERA]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[CARRERA]"
+                          name="CARRERA" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[APELLIDOS Y NOMBRES]"
+                          name="APELLIDOS Y NOMBRES" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUNTAJE]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[PUNTAJE]"
+                          name="PUNTAJE" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ESPECIALIDAD]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ESPECIALIDAD]"
+                          name="ESPECIALIDAD" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{9A7CC64B-0B60-4937-93E8-6499013B3C50}"
+          DTS:ObjectName="{9A7CC64B-0B60-4937-93E8-6499013B3C50}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Foreach Loop Container\Tarea Flujo de datos"
+          TopLeft="55.8857214090776,20.5176494783184" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="279.2,116.8"
+          Size="279.2,160"
+          Id="Package\Foreach Loop Container"
+          TopLeft="362.285720455403,108.894119174258" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Tarea Flujo de datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="288,41.6"
+          Id="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados"
+          TopLeft="26.3,5.49999999999995" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Tarea Flujo de datos\Origen Hoja Ingresantes Carpeta Resultados">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

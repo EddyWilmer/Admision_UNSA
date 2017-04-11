@@ -1,0 +1,103 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>SSAS_Admision_UNSA_Cube_Postulantes</Database>
+    <Server>localhost</Server>
+    <ConnectionString>Data Source=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>gEVcg6u9hZP3EzSdk/xZe9pJZ7o=26/03/2017 22:40:3030/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Admision UNSA DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>hjV0+Sg1wFBrpMC6ljzwncGUsHk=31/03/2017 10:42:1230/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Admision UNSA DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Ruqih7gDPt1SY+F/nJ6xUZbbavc=9/04/2017 23:24:5230/03/2017 09:25:51</TimeStamp>
+        <ID>
+          <String>Proceso Admision</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>xzoJH82U1h8TJJBaVgUxn08Q1L8=28/03/2017 19:17:1630/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Fase</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>emTpBUxtVsJyMjDUfgLgEit/OfI=9/04/2017 23:24:5230/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Facultad</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>4j38Duzyu0BMkca+3QELNrVfVRI=28/03/2017 19:15:4630/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Carrera</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>58hmzqPdlJ8CUn+kOrsMjKkefms=28/03/2017 19:17:1630/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Modalidad</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>wedrGKX99GsxIp0mhOL15s2Nfgg=9/04/2017 23:24:5230/03/2017 09:25:51</TimeStamp>
+        <ID>
+          <String>Tiempo</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>OkfcY3lC9tl6ikZvkJqPVWCEKQI=9/04/2017 23:24:5230/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>Area</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>vW0Hygt+jcXBzr9Uf4YnsJRamqA=10/04/2017 17:09:1330/03/2017 09:25:50n4qICre4gCL/NI9nLoGWLGLsv8U=26/03/2017 22:48:1030/03/2017 09:25:50</TimeStamp>
+        <ID>
+          <String>DataSource_Postulantes</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>4fD4HjvOvnf0gYYsj3MBfs2bAwc=26/03/2017 22:37:3930/03/2017 09:25:51</TimeStamp>
+      <ID>
+        <String>SSAS_Admision_UNSA_Cube_Postulantes</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2017-04-10T22:09:14.51Z</LastDeployed>
+</DeploymentSnapshot>
